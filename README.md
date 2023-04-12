@@ -7,6 +7,7 @@ It also handles encryption between two endpoints, it isn't perfect like any othe
 # How does the library work?
 
 Well first off both modules on client and server side require the same name, this was an intentional choice as to throw off any interception of the encryption key.
+<br>
 So e.g.
 Server-side imports: `import aesm` => Client-side imports: `import aesm`
 ** It will not work if the imports are of different names **
