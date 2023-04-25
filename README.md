@@ -13,6 +13,10 @@ Server-side imports: `import aesm` => Client-side imports: `import aesm`
 <br>
 ** It will not work if the imports are of different names **
 <br>
+The library uses different data structures in order to handle data appropriately
+
+Packets => They are tuple e.g. (<UNIX time of message sent>, <Message string>)
+<hr>
 
 To get started I will show you some examples of how to instantiate the class
 ```py
@@ -25,9 +29,6 @@ socket = ServerNetwork(host="<ENTER VALID HOST ADDRESS>", port=<ENTER HOST PORT>
 
 #ClientSide
 socket = ClientNetwork(host="<ENTER TARGET ADDRESS>", port=<ENTER TARGET PORT>)
-
-#Packets
-They are tuple (<UNIX time of message sent>, <Message string>)
 ```
 
 # Server-side Functionality
