@@ -73,3 +73,11 @@ while (True):
   socket.retrieved.getData() #Returns the oldest data packet sent by server
 
 ```
+
+# Example of deployment
+I have deployed a server on replit (link here: https://replit.com/@DitinLeNehibis/SocketLayerServer), it has a simple tkinter userinterface and username system. You can test it using `exemplarClient.py` simply run that file and you will automatically connect to the server, thanks to some clever port forwarding I did on the server side.
+![image](https://user-images.githubusercontent.com/97798919/234248864-53769860-953e-420e-a324-fbd90119e900.png)
+![image](https://user-images.githubusercontent.com/97798919/234249229-4693695d-70e8-4c58-854d-c19f45be4fbe.png)
+![image](https://user-images.githubusercontent.com/97798919/234249506-1fb79f56-c821-4007-ab6e-968b16b012ee.png)
+![image](https://user-images.githubusercontent.com/97798919/234249620-4300584a-6c32-482a-8aed-b5e561cef54c.png)
+
