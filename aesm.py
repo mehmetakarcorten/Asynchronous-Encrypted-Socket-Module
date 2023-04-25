@@ -1,7 +1,7 @@
 import pip
 import os
 
-pip.main(["install", "-r", "pycryptodome"])
+pip.main(["install", "pycryptodome"])
 
 import time
 import socket
