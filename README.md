@@ -21,23 +21,54 @@ To get started I will show you some examples of how to instantiate the class
 from aesm import Cipher, ServerNetwork, ClientNetwork
 
 #ServerSide
-socket = ServerNetwork(host="<ENTER HOST ADDRESS>", port=<ENTER HOST PORT>)
+socket = ServerNetwork(host="<ENTER VALID HOST ADDRESS>", port=<ENTER HOST PORT>)
 
 #ClientSide
 socket = ClientNetwork(host="<ENTER TARGET ADDRESS>", port=<ENTER TARGET PORT>)
+
+#Packets
+They are tuple (<UNIX time of message sent>, <Message string>)
 ```
 
-# Serverside Functionality
+# Server-side Functionality
 
 ```py
-#You must import "Cipher"
+#You must import "Cipher" from aesm
 
+import asyncio
 from aesm import Cipher, ServerNetwork
 
-socket = ServerNetwork(host="<ENTER HOST ADDRESS>", port=<ENTER HOST PORT>)
+socket = ServerNetwork(host="<ENTER VALID HOST ADDRESS>", port=<ENTER HOST PORT>)
 
 while (True):
-  socket.connections.activity() # => returns None or (<ADDRESS>, <True or False, which indicates whether the connection accepted or not respectively>, <UNIX TIME OF ACTIVITY>)
+  socket.connections.activity() # Returns None or (<ADDRESS>, <True or False, which indicates whether the connection accepted or not respectively>, <UNIX TIME OF ACTIVITY>)
   
-  socket.connections.getDataOrdinal(oldToNew=True) => Returns latest/oldest packet in the stack of connections
+  socket.connections.getDataOrdinal(oldToNew=True) # Returns latest/oldest packet in the stack of connections
+  
+  socket.connections[<ADDRESS>]["data"].getData() # Returns the oldest data packet sent by client
+  socket.connections[<ADDRESS>]["data"][<POSITION INTEGER>] # Returns data packet in that position
+  len(socket.connections[<ADDRESS>]["data"]) # Returns number of packets in queue
+  
+  
+  asyncio.run(socket.sendTo("<INSERT DATA AS STRING>",<ADDRESS>)) #Sends data to a specific connection
+  asyncio.run(socket.sendAll("<INSERT DATA AS STRING>")) #Send data to all connections
+  
+socket.stop() # Stops the socket connection, you could also do socket.close() but it may lead to unclosed threads and connections(not reliable)
+```
 
+# Client-side Functionality
+
+```py
+#You must import "Cipher" from aesm
+
+from aesm import Cipher, ClientNetwork
+
+socket = ClientNetwork(host="<ENTER TARGET ADDRESS>", port=<ENTER TARGET PORT>)
+
+socket.sendData("<DATA STRING>")
+
+while (True):
+  socket.retrieved[<POSITION INTEGER>] #Returns data packet in that position
+  socket.retrieved.getData() #Returns the oldest data packet sent by server
+
+```
