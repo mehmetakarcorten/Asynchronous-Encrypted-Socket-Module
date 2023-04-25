@@ -1,7 +1,7 @@
 import urllib.request
 import tkinter
 from tkinter.simpledialog import askstring
-from networking import Cipher, ClientNetwork
+from aesm import Cipher, ClientNetwork
 
 class Window(tkinter.Tk):
 	def __init__(self):
