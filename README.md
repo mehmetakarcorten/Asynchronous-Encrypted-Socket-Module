@@ -15,7 +15,7 @@ Server-side imports: `import aesm` => Client-side imports: `import aesm`
 <br>
 The library uses different data structures in order to handle data appropriately
 
-Packets => They are tuple e.g. (UNIX time floating point of message sent, "<Message string>")
+Packets => They are tuple e.g. (1682417420, "Message") // The first value in the tuple is a unix time of when the message was sent
 <hr>
 
 To get started I will show you some examples of how to instantiate the class
