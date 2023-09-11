@@ -151,7 +151,7 @@ class ServerNetwork(socket.socket):
       connection, addr = await loop.sock_accept(self)
 
       cipher = Cipher()
-      dump = pickle.dumps(cipher)
+      dump = pickle.dumps([cipher])
       connection.send(dump)
 
       self.connections[addr] = {
@@ -177,7 +177,7 @@ class ClientNetwork(socket.socket):
     self.retrieved = DataStream()
 
     self.cipher = self.recv(1024)
-    self.cipher = pickle.loads(self.cipher)
+    self.cipher = pickle.loads(self.cipher)[0]
 
     Thread(target=lambda: asyncio.run(self.receive())).start()
     os.system('cls' if os.name == 'nt' else 'clear')
